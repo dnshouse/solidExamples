@@ -1,0 +1,9 @@
+{
+    "name": "dns/solid-examples",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Solid\\": "src/"
+        }
+    }
+}
