@@ -60,3 +60,19 @@ $square->setWidth(5)->setSquareHeight(5);
 echo $square->area();
 
 echo '<hr />';
+
+/**
+ * Interface Segregation
+ *
+ * A client should not be forced to implement an interface that doesn't use
+ */
+
+use Solid\InterfaceSegregation\Refactored\Captain;
+use Solid\InterfaceSegregation\Refactored\HumanWorker;
+use Solid\InterfaceSegregation\Refactored\AndroidWorker;
+
+$captain = new Captain();
+
+echo $captain->manage(new HumanWorker);
+echo '<br />';
+echo $captain->manage(new AndroidWorker);
