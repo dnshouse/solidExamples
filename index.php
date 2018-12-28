@@ -76,3 +76,17 @@ $captain = new Captain();
 echo $captain->manage(new HumanWorker);
 echo '<br />';
 echo $captain->manage(new AndroidWorker);
+
+echo '<hr />';
+
+/**
+ * Dependency Inversion
+ *
+ * Depend on abstractions instead of concretions
+ */
+
+use Solid\DependencyInversion\Refactored\WelcomeMessage;
+use Solid\DependencyInversion\Refactored\SmtpMailer;
+
+$mail = new WelcomeMessage(new SmtpMailer);
+echo $mail->send();
