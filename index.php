@@ -4,7 +4,10 @@ require "vendor/autoload.php";
 
 /**
  * Single Responsibility
+ *
+ * One class should have only one responsibility / reason to change.
  */
+
 use Solid\SingleResponsibility\Refactored\User;
 use Solid\SingleResponsibility\Refactored\Validator\UserValidator;
 use Solid\SingleResponsibility\Refactored\Renderer\UserRenderer;
@@ -24,11 +27,36 @@ echo '<hr />';
 
 /**
  * Open Closed
+ *
+ * A class should be open for extension but closed for modifications.
+ * We should not be forced to modify the class because of business logic changes.
+ * Instead we should be able to write just another implementation.
  */
+
 use Solid\OpenClosed\Refactored\Checkout;
 use Solid\OpenClosed\Refactored\PayPal;
 
 $checkout = new Checkout(new PayPal);
+
 echo $checkout->acceptPayment();
+
+echo '<hr />';
+
+/**
+ * Liskov Substitution
+ *
+ * We should be able to substitute the parent with the child class.
+ *
+ * This means that the overridden methods should have the same signature,
+ * throwing the same type of exceptions and returning the same type of data.
+ */
+
+use Solid\LiskovSubstitution\Refactored\Square;
+
+$square = new Square();
+//$square->setWidth(5)->setHeight(6);
+$square->setWidth(5)->setSquareHeight(5);
+
+echo $square->area();
 
 echo '<hr />';
