@@ -1,7 +1,10 @@
 <?php
 
-namespace Solid\SingleResponsibility;
+namespace Solid\SingleResponsibility\Refactored;
 
+
+use Solid\SingleResponsibility\Refactored\Validator\UserValidator;
+use Solid\SingleResponsibility\Refactored\Renderer\UserRenderer;
 use Exception;
 
 class User
@@ -32,21 +35,23 @@ class User
         return $this->phoneNumber;
     }
 
-    public function validatePhoneNumber()
+    /**
+     * @param UserValidator $validator
+     * @return $this
+     * @throws Exception
+     */
+    public function validate(UserValidator $validator)
     {
-        if (!is_int($this->phoneNumber)) {
-            throw new Exception("The phone number seems to be invalid.");
-        }
-
+        $validator->validate($this);
         return $this;
     }
 
-    public function renderJson()
+    /**
+     * @param UserRenderer $renderer
+     * @return array
+     */
+    public function render(UserRenderer $renderer)
     {
-        return json_encode([
-            'userName' => $this->userName,
-            'fullName' => $this->fullName,
-            'phoneNumber' => $this->phoneNumber,
-        ]);
+        return $renderer->render($this);
     }
 }
